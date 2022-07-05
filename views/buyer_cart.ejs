@@ -1,0 +1,57 @@
+
+<!-- how to use or and in ejs if statments -->
+
+<%- include('buyer_header',{logout : true})%>
+<div style="display: flex;
+justify-content: center; margin: 20px;">
+    <div>
+        <h2>My cart</h2>
+
+        <h2 style="text-decoration: underline;">Available products</h2>
+        <div style="margin:30px">
+            <%for (let product of available) {%>
+                <div style=" margin: 20px 20px 20px 20px;display: inline-block;">
+                    <a href=<%= '/product/' + product.product_id %> >
+                        <img src=<%=product.image_url%> 
+                            width: 100px;
+                            height: 100px;
+                        />
+                        <h3>name - <%=product.product_name%></h3>
+                        <h3>price - <%=product.price%></h3>
+                        <h3>quantity - <%=product.quantity%></h3>
+                        <h3>status - <%=product.status%></h3>
+                    </a>
+                    <button><a href=<%= '/remove-cart/' + product.product_id %>>REMOVE PRODUCT</a></button> 
+                </div>
+            <%}%>
+        </div>
+        <h2 style="text-decoration: underline;">Unavailable products</h2>
+        <%for (let product of unavailable) {%>
+                    <div style=" margin: 20px 20px 20px 20px;display: inline-block;">
+                        <a href=<%= '/product/' + product.product_id %> >
+                            <img src=<%=product.image_url%> 
+                                width: 200px;
+                                height: 200px;
+                            />
+                            <h3 >name - <%=product.product_name%></h3>
+                            <h3>price - <%=product.price%></h3>
+                            <h3>quantity - <%=product.quantity%></h3>
+                            <h3>status - <%=product.status%></h3>
+                        </a>
+                        <button><a href=<%= '/remove-cart/' + product.product_id %>>REMOVE PRODUCT</a></button> 
+                    </div>
+        <%}%>
+    </div>
+    
+    <div style="margin: 20px;">
+        <span>
+            <h2 style="margin: 30px;">total - <%=total%> </h2>
+        </span>
+        <span>
+            <button><a href='/checkout' ><h3>CHECKOUT</h3></a></button>
+        </span>
+    </div>
+</div>
+
+
+<%- include('footer')%>

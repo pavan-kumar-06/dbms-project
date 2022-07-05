@@ -1,0 +1,20 @@
+
+<%- include('buyer_header',{logout : true})%>
+<h2>My whish list</h2>
+<%for (let product of products) {%>
+        <div style=" margin: 20px 20px 20px 20px;display: inline-block;">
+            <a href=<%= '/product/' + product.product_id %> >
+                <img src=<%=product.image_url%> 
+                    width: 200px;
+                    height: 200px;
+                />
+                <h3>Product Name - <%=product.product_name%></h3>
+                <h3>Price - <%=product.price%></h3>
+            </a>
+            <form method="post" action=<%= '/remove-from-whishlist/' + product.product_id %>>
+                <button>Remove</button> 
+            </form>
+        </div>
+<%}%>
+
+<%- include('footer')%>

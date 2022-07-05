@@ -1,0 +1,26 @@
+
+<%- include('seller_header',{logout : true})%>
+<h2>Orders Placed</h2>
+<div>
+    <%for (let product of products) {%>
+        <div style=" margin: 20px 20px 20px 20px;display: inline-block;">
+            <a href=<%= '/product/' + product.product_id %> >
+                <img src = <%=product.image_url%> height="100px" width="100px" alt="img"/> 
+                <h3>Product Name - <%=product.product_name%></h3>
+                <h3>Price - <%=product.price%></h3>
+                <h3>Quantity - <%=product.quantity%></h3>
+                <h3>Delivery Adress - <%=product.address%></h3>
+                <h3>Placed Date -<%=product.placed_date%> </h3>
+
+            </a>
+            <form method="post" action=<%= '/cancelorder/' + product.order_id %>>
+                <button>cancel</button> 
+            </form>
+            <form method="post" action=<%= '/sell/deliver_order/' + product.order_id %>>
+                <button>deliver</button> 
+            </form>
+        </div>
+<%}%>
+</div>
+
+<%- include('footer')%>

@@ -1,0 +1,36 @@
+<%- include('buyer_header', {logout : false})%>
+    <% if (errmsg.length > 0) {%>
+        <p style="color: red; text-align: center;"><%= errmsg%></p>
+    <%}%>
+    <div class="ext-box for-register">
+        <form action="/register" method="POST">
+            <table style="width: 100%;">
+                <tr>
+                    <td>Username</td>
+                    <td><input type="text" name="username" required="required"></td>
+                </tr>
+                <tr>
+                    <td>Full Name</td>
+                    <td><input type="text" name="fullname" required="required"></td>
+                </tr>
+                <tr>
+                    <td>Image Url</td>
+                    <td><input type="text" name="image_url" required="required"></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input type="password" name="password" required="required"></td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td><input type="text" name="address" required="required"></td>
+                </tr>
+                <tr>
+                    <td>Phone Number (10 digits)</td>
+                    <td><input type="text" name="phonenumber" required="required"></td>
+                </tr>
+            </table> 
+            <button class="cmn-btn">REGISTER</button>   
+        </form>
+    </div>
+<%- include('footer')%>

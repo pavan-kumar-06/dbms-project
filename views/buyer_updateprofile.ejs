@@ -1,0 +1,33 @@
+<%- include('buyer_header', {logout : false})%>
+    <div class="ext-box for-register">
+        <form action="/updateprofile" method="POST">
+            <table style="width: 100%;">
+                <tr>
+                    <td>User Name</td>
+                    <td><input type="text" name="user_name" required="required" value=<%=user_data[0].user_name%>></td>
+                </tr>
+                <tr>
+                    <td>Image url</td>
+                    <td><input type="text" name="image_url" required="required" value=<%=user_data[0].image_url%>></td>
+                </tr>
+                <tr>
+                    <td>Full Name</td>
+                    <td><input type="text" name="full_name" required="required" value=<%=user_data[0].full_name%>></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input type="password" name="user_password" required="required" value=<%=user_data[0].user_password%>></td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td><input type="text" name="address" required="required" value=<%=user_data[0].address%>></td>
+                </tr>
+                <tr>
+                    <td>Phone Number (10 digits)</td>
+                    <td><input type="text" name="phone_number" required="required" value=<%=user_data[0].phone_number%>></td>
+                </tr>
+            </table> 
+            <button class="cmn-btn">UPDATE PROFILE</button>   
+        </form>
+    </div>
+<%- include('footer')%>

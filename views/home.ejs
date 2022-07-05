@@ -1,0 +1,80 @@
+
+<!-- how to use or and in ejs if statments -->
+
+<% if ( (seller ==true)) {%>
+    <%- include('seller_header',{logout : true})%>
+<%}%>
+
+<% if ( (seller ==false)) {%>
+    <%- include('buyer_header',{logout : true})%>
+    <div style=
+    "display: flex;
+    justify-content: center;
+    align-items: center; margin-top: 20px;">
+        
+        <div style="display:inline-block; margin-right: 50px;">
+            <form action="/home/search" method="post">
+                <input style="padding: 14px 20px; font-size: 15px;" type="text" name = "search" placeholder="Search...">
+                <button style="padding: 14px 20px; font-size: 15px;" type = "submit">Search</button>
+            </form>
+        </div>
+        
+        <form method="post" action="/home">
+            <td>
+                <label style=" font-size: 15px;">Filter by</label>
+            </td>
+            <td>
+                <select style="padding: 14px 20px; font-size: 15px;" name="cat" size="1">
+                    <option value="pricelh">Price low to high</option>
+                    <option value="pricehl">price high to low</option>
+                    <option value="available">Avaialable products</option>
+                    <option value="recentposts">Recently posted</option>
+                </select>
+            </td>
+            <button style="padding: 14px 20px; font-size: 15px;" type="submit">Filter</button>
+        </form>
+
+        <form style="margin-left:20px;" method="post" action="/home/catogory">
+            <td>
+                <label style=" font-size: 15px;">Filter by category</label>
+            </td>
+            <td>
+                <select style="padding: 14px 20px; font-size: 15px;" name="filter" size="1">
+                    <option value="1">Electronics</option>
+                    <option value="2">Fashion</option>
+                    <option value="3">Books</option>
+                    <option value="4">Other</option>
+                </select>
+            </td>
+            <button style="padding: 14px 20px; font-size: 15px;" type="submit">Filter</button>
+        </form>
+    </div>
+<%}%>
+<% if ( (seller ==true)) {%>
+    <h2 style="margin-left: 20px;">My listed Products</h2>
+<%}%>
+
+<div> 
+    <%for (let product of products) {%>
+            <!-- products which or not sold by that user or products of that user is given while templating -->
+            <% if ((uid != product.user_id && seller == false ) || (seller ==true)) {%>
+                <div style=" margin: 20px 20px 20px 20px;display: inline-block;">
+                    <a href=<%= '/product/' + product.product_id %> >
+                        <img src=<%=product.image_url%> 
+                            width: 200px;
+                            height: 200px;
+                        />
+                        <h3><%=product.product_name%></h3>
+                        <h3>₹<%=product.price%></h3>
+                        <h3><%=product.status%></h3>
+                    </a>
+                    <% if ( (seller ==true)) {%>
+                        <button><a href=<%= '/sell/updateproduct/' + product.product_id %>>UPDATE PRODUCT</a></button> 
+                        <button><a href=<%= '/sell/deleteproduct/' + product.product_id %>>DELETE PRODUCT</a></button> 
+                    <%}%>
+                </div>
+        <%}%>
+    <%}%>
+</div>
+
+<%- include('footer')%>

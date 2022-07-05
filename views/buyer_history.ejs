@@ -1,0 +1,35 @@
+
+
+<%- include('buyer_header',{logout : true})%>
+<h2>Delivered orders</h2>
+<%for (let product of deliveredProducts) {%>
+        <div style=" margin: 20px 20px 20px 20px;display: inline-block;">
+            <a href=<%= '/product/' + product.product_id %> >
+                <img src=<%=product.image_url%> 
+                    width: 200px;
+                    height: 200px;
+                />
+                <h3>Product Name - <%=product.product_name%></h3>
+                <h3>Price - <%=product.price%></h3>
+                <h3>Quantity - <%=product.quantity%></h3>
+                <h3>Delivered Date - <%=product.delivered_date%></h3>
+            </a>
+        </div>
+<%}%>
+<h2>Canceled Orders</h2>
+<%for (let product of canceledProducts) {%>
+        <div style=" margin: 20px 20px 20px 20px;display: inline-block;">
+            <a href=<%= '/product/' + product.product_id %> >
+                <img src=<%=product.image_url%> 
+                    width: 200px;
+                    height: 200px;
+                />
+                <h3>Product Name - <%=product.product_name%></h3>
+                <h3>Price - <%=product.price%></h3>
+                <h3>Quantity - <%=product.quantity%></h3>
+                <h3>Canceled Date - <%=product.delivered_date%></h3>
+            </a>
+        </div>
+<%}%>
+
+<%- include('footer')%>

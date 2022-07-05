@@ -1,0 +1,58 @@
+<%- include('seller_header', {logout : true})%>
+    <% if (errmsg.length > 0) {%>
+        <p style="color: red; text-align: center;"><%= errmsg%></p>
+    <%}%>
+    <div class="ext-box for-register">
+        <form action="/sell/postproduct" method="POST">
+            <table style="width: 100%;">
+                <tr>
+                    <td>Productname</td>
+                    <td><input type="text" name="Productname" required></td>
+                </tr>
+                <tr>
+                    <td>Image_url</td>
+                    <td><input type="text" name="image_url" required></td>
+                </tr>
+                <tr>
+                    <td>Quantity</td>
+                    <td><input type="number" name="Quantity" required></td>
+                </tr>
+                <tr>
+                    <td>Description </td>
+                    <td><input type="text" name="Description" required></td>
+                </tr>
+                <tr>
+                    <td>Price</td>
+                    <td><input type="number" name="Price" required></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label >Enter Status</label>
+                    </td>
+                    <td>
+                        <select name="status" size="1">
+                            <option value="available">available</option>
+                            <option value="unavailable">unavailable</option>
+                        </select>
+                    </td>
+                    <br><br>
+                </tr>
+                <tr>
+                    <td>
+                        <label >Enter Category</label>
+                    </td>
+                    <td>
+                        <select name="catogory_id" size="1">
+                            <option value="1">Electronics</option>
+                            <option value="2">Fashion</option>
+                            <option value="3">Books</option>
+                            <option value="4">others</option>
+                        </select>
+                    </td>
+                    <br><br>
+                </tr>
+            </table> 
+            <button class="cmn-btn">Post-Product</button>   
+        </form>
+    </div>
+<%- include('footer')%>

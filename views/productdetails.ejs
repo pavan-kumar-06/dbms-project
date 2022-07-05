@@ -1,0 +1,44 @@
+<%- include('buyer_header', {logout : true})%>
+<div style=
+"display: flex;
+justify-content: center;
+align-items: center;"> 
+                <div>
+                        <img src=<%=product[0].image_url%> />
+                </div>
+                <div style="margin:30px">
+                        <h3><%=product[0].product_name%></h3>
+                        <h3><%=product[0].description%></h3>
+                        <h3>₹<%=product[0].price%></h3>
+                        <h3>Quantity Available <%=product[0].quantity %></h3>
+                        <h3>Status <%= product[0].status %></h3>
+                </div>
+                
+                <div style="margin:30px">
+                        <h3 style="text-decoration: underline;">Seller Information</h3>
+                        <h3>Seller name - <%= seller[0].full_name %></h3>
+                        <h3>Phone number - <%= seller[0].phone_number %></h3>
+                        <h3>Adress - <%= seller[0].address %></h3>
+                        <% if ( product[0].status=='available' && product[0].quantity>0) {%>
+                                <form action="/orders" method="post">
+                                <label for="quantity">Quantity (between 1 and <%=product[0].quantity %>):</label>
+                                <input type="number" required id="quantity" name="quantity" min="1" max=<%=product[0].quantity %>>
+                                <input type="hidden" name="pid" value=<%=product[0].product_id%>>
+                                <input type="hidden" name="price" value=<%=product[0].price%>>
+                                <button >Place order</button>
+                                </form>
+                        <%}%>
+                </div>
+                
+                <form action=<%= '/add-to-cart/' + product[0].product_id %> method="post">
+                        <label for="quantity">Quantity For Cart</label>
+                        <input type="number" required id="quantity" name="quantity" min="1"  %>>
+                        <button type="submit">Add to Cart</button>
+                </form>
+                <form action="/whishlist" method="post">
+                        <input type="hidden" name="id" value=<%=product[0].product_id%>>
+                        <button type="submit">Add to Whishlist</button>
+                </form>
+</div>
+<!-- <button><a href=<%= '/updateproduct/' + product[0].pid %>>Update Product</a></button> --> 
+<%- include('footer')%>

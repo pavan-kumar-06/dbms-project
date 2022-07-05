@@ -1,0 +1,15 @@
+<%- include('buyer_header', {logout : true})%>
+<div class="home-box-main"> 
+    <div style="width:500px; margin:0 auto;margin-top: 75px;  ">
+            <img src=<%=details[0].image_url%> height="100" width="100" alt="user profile pic" style="border-radius:100%">
+            <h3>username - <%=details[0].user_name%></h3>
+            <h3>full name - <%=details[0].full_name%></h3>
+            <h3>adress  - <%=details[0].address%></h3>
+            <h3>phone number -<%=details[0].phone_number%></h3>
+            <button><a href="/updateprofile">UPDATE ACCOUNT</a></button> 
+            <!-- <button><a href="/deleteprofile">DELETE ACCOUNT</a></button>  -->
+            </span>
+    </div>
+</div>
+
+<%- include('footer')%>
